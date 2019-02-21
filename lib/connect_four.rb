@@ -6,3 +6,5 @@ module ConnectFour
 end
 
 require_relative "./connect_four/Player.rb"
+require_relative "./connect_four/Disc.rb"
+require_relative "./connect_four/Board.rb"
