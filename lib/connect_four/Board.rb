@@ -6,8 +6,9 @@ module ConnectFour
       @grid = grid
     end
 
-    def drop
-      set(disc: disc, at: column)
+    def drop(turn)
+      color = turn.color
+      set(disc: disc(color), at: column)
     end
     
     private
@@ -25,8 +26,8 @@ module ConnectFour
       1
     end
 
-    def disc
-      Disc.new(color: "yellow")
+    def disc(color)
+      Disc.new(color: color)
     end
     
     def default_grid

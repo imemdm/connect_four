@@ -31,9 +31,10 @@ module ConnectFour
           grid = [[nil, nil, nil], [nil, nil, nil]]  # 2 rows 3 columns example grid
           board = Board.new(grid: grid)
           allow(board).to receive(:column) { 1 }
-          allow(board).to receive(:disc) { disc }
+          turn = double(color: "yellow")
 
-          board.drop
+
+          board.drop(turn)
 
           expect(board.grid[1][1]).to_not be_nil
           expect(board.grid[1][1].color).to eq("yellow")
@@ -47,9 +48,9 @@ module ConnectFour
           grid = [[nil, nil, nil], [nil, disc1, nil]]  # 2 rows 3 columns example grid
           board = Board.new(grid: grid)
           allow(board).to receive(:column) { 1 }
-          allow(board).to receive(:disc) { disc2 }
+          turn = double(color: "yellow")
 
-          board.drop
+          board.drop(turn)
 
           expect(board.grid[0][1]).to_not be_nil
           expect(board.grid[0][1].color).to eq("yellow")
