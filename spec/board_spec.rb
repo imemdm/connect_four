@@ -57,5 +57,90 @@ module ConnectFour
         end
       end
     end
+
+    describe "#game_over" do
+      context "when game is won" do
+        it "returns :winner if there is a horizontal winning combination" do
+          yellow_disc = double(color: "yellow")
+          grid = [
+            [nil, yellow_disc, yellow_disc, yellow_disc, yellow_disc, nil],
+          ]
+          board = Board.new(grid: grid)
+          
+          expect(board.game_over).to eq(:winner)
+        end
+
+        it "returns :winner if there is a vertical winning combination" do
+          yellow_disc = double(color: "yellow")
+          grid = [
+            [nil, nil, nil, nil],
+            [nil, nil, nil, nil],
+            [yellow_disc, nil, nil, nil],
+            [yellow_disc, nil, nil, nil],
+            [yellow_disc, nil, nil, nil],
+            [yellow_disc, nil, nil, nil],
+          ]
+          board = Board.new(grid: grid)
+          
+          expect(board.game_over).to eq(:winner)
+        end
+
+        it "returns :winner if there is a \ diagonal winning combination" do
+          yellow_disc = double(color: "yellow")
+          grid = [
+            [yellow_disc, nil, nil, nil],
+            [nil, yellow_disc, nil, nil],
+            [nil, nil, yellow_disc, nil],
+            [nil, nil, nil, yellow_disc],
+          ]
+          board = Board.new(grid: grid)
+          
+          expect(board.game_over).to eq(:winner)
+        end
+
+        it "returns :winner if there is a / diagonal winning combination" do
+          disc = double(color: "yellow")
+          grid = [
+            [nil, nil, nil, nil, disc, nil],
+            [nil, nil, nil, disc, nil, nil],
+            [nil, nil, disc, nil, nil, nil],
+            [nil, disc, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil],
+          ]
+          board = Board.new(grid: grid)
+          
+          expect(board.game_over).to eq(:winner)
+        end
+      end
+
+      context "when the grid is full without a winning combination" do
+        it "returns :draw" do
+          red_disc = double(color: "red")
+          yellow_disc = double(color: "yellow")
+          grid = [
+            [yellow_disc, yellow_disc, red_disc, red_disc],
+            [red_disc, red_disc, yellow_disc, yellow_disc]
+          ]
+          board = Board.new(grid: grid)
+          allow(board).to receive(:winner?) { false }
+          
+          expect(board.game_over).to eq(:draw)
+        end
+      end
+
+      context "when the game hasn't ended yet" do
+        it "returns false" do
+          disc = double(color: "red")
+          grid = [
+            [nil, disc, nil, disc],
+            [disc, nil, nil, nil]
+          ]
+          board = Board.new
+          allow(board).to receive(:winner?) { false }
+  
+          expect(board.game_over).to eq(false)
+        end
+      end
+    end
   end
 end
