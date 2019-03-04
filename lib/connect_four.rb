@@ -8,3 +8,6 @@ end
 require_relative "./connect_four/Player.rb"
 require_relative "./connect_four/Disc.rb"
 require_relative "./connect_four/Board.rb"
+require_relative "./connect_four/InputHandler.rb"
+require_relative "./connect_four/Validator.rb"
+

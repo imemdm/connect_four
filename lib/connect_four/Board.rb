@@ -113,7 +113,7 @@ module ConnectFour
     end
 
     def column
-      1
+      InputHandler.new(Validator.new).column(grid)
     end
 
     def disc(color)
