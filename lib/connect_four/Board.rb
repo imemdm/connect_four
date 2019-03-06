@@ -4,6 +4,7 @@ module ConnectFour
     
     def initialize(grid: default_grid)
       @grid = grid
+      @board_view = BoardView.new(grid: grid)
     end
 
     def drop(turn)
@@ -16,8 +17,14 @@ module ConnectFour
       return :draw if draw?
       false
     end
+
+    def view
+      board_view.draw
+    end
     
     private
+
+    attr_reader :board_view
 
     def winner?
       w = grid[0].length
