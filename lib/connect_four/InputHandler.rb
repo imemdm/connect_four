@@ -1,6 +1,6 @@
 module ConnectFour
   class InputHandler
-    def initialize(validator: validator)
+    def initialize(validator:)
       @validator = validator
     end
 
@@ -31,7 +31,7 @@ module ConnectFour
     end
 
     def validate?(val)
-      validator.valid?(val)
+      validator.valid?(value: val)
     end
 
     def ask_for_column

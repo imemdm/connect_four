@@ -34,8 +34,8 @@ module ConnectFour
 
           board.drop(turn)
 
-          expect(board.grid[1][1]).to_not be_nil
           expect(board.grid[1][1].color).to eq("x")
+          expect(board.grid[0][1]).to be_nil
         end
       end
 
@@ -49,7 +49,6 @@ module ConnectFour
 
           board.drop(turn)
 
-          expect(board.grid[0][1]).to_not be_nil
           expect(board.grid[0][1].color).to eq("x")
         end
       end

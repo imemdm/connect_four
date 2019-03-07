@@ -12,6 +12,7 @@ module ConnectFour
         puts ""
         board.view
         puts ""
+        puts "#{current_player.name}'s turn (#{current_player.color})"
         board.drop(current_player)
         if board.game_over
           puts game_over_message
@@ -29,12 +30,12 @@ module ConnectFour
     attr_accessor :current_player, :other_player
 
     def switch_players
-      current_player, other_player = other_player, current_player
+      @current_player, @other_player = @other_player, @current_player
     end
 
     def game_over_message
-      "#{current_player} won" if board.game_over == :winner
-      "The game ended as a tie" if board.game_over == :draw
+      return "#{current_player.name} won" if board.game_over == :winner
+      return "The game ended as a tie" if board.game_over == :draw
     end
   end
 end

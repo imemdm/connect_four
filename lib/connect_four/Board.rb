@@ -115,12 +115,13 @@ module ConnectFour
       columns[at].reverse.each.with_index do |pos, i|
         if pos.nil?
           grid[grid.length - 1 - i][at] = disc
+          break
         end
       end
     end
 
     def column
-      InputHandler.new(Validator.new).column(grid)
+      InputHandler.new(validator: Validator.new(grid: grid)).column(grid)
     end
 
     def disc(color)
